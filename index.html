@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WEB EDITOR</title>
+        <meta name="viewport" content="width=device-width, initial-scale=0.1">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/dracula.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/codemirror.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/javascript/javascript.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/css/css.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div class="navbar">
+            <button style="background-color: transparent; border: none;"><b>WEB EDITOR</b></button>
+            <button onclick="run()"><img src="images/run.png" style="width: 16px;height: 16px;"> Run</button>
+            <button onclick="downloadFile()"><img src="images/save.png" style="width: 16px;height: 16px;"> Save</button>
+            <button onclick="addLibraries()"> <img src="images/file.png" style="width:16px;height: 16px; margin-right: 2px;">External Libraries</button>
+        </div>
+
+        <div class="editor">
+            <div class="in">
+                <label>CODE PILOT <a href="https://huggingface.co/HuggingFaceH4/starchat-beta"><p style="margin-left: 5px;">  ~START CHAT - BETA</p> </a></label>
+                <textarea id="input-field"></textarea>
+                <button class="generate-button" onclick="generateText()">Generate</button> <button class="clear-button" onclick='document.getElementById("input-field").value = "";'>Clear</button> <button class="logo-button" onclick="switchTab('html')">HTML</button> <button class="logo-button" onclick="switchTab('css')">CSS</button>
+                <button class="logo-button" onclick="switchTab('javascript')">JAVASCRIPT</button>
+                <div class="button-container">
+
+                </div>
+                <label id="tab-label">JAVASCRIPT</label>
+                <textarea id="js"></textarea>
+            </div>
+            <div class="out" id="out">
+                <label>OUTPUT</label>
+                <iframe id="output"></iframe>
+                <label>CONSOLE</label>
+                <div class="console" id="console"></div>
+            </div>
+        </div>
+    </body>
+    <script src="index.js"></script>
+</html>
