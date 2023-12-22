@@ -3,7 +3,7 @@ let editor = CodeMirror.fromTextArea(document.getElementById("js"), {
   lineNumbers: true,
 });
 let theme = "dracula";
-editor.setSize(null,"48.75%")
+editor.setSize(null,"86.5%")
 editor.setOption('theme', theme);
 
 let currentTab = "javascript";
@@ -120,40 +120,13 @@ function autoSave() {
   const key_css = 'css';
   const value_css = css;
 
-  const key_gen = 'generated';
-  const value_gen = document.getElementById("input-field").value;
-
   saveToLocalStorage(key_js, value_js);
   saveToLocalStorage(key_html, value_html);
   saveToLocalStorage(key_css, value_css);
-  saveToLocalStorage(key_gen, value_gen);
 }
 
 // Call autoSave function every 1 minutes
 setInterval(autoSave, 1 * 60 * 1000);
-
-async function generateText() {
-  let promptText = document.getElementById("input-field").value;
-
-  try {
-    const response = await axios.post('/generate-text', {
-      inputs: promptText,
-      options: {
-        max_new_token:512,
-        temperature:0.2,
-        do_sample:true,
-        top_k:50,
-        top_p:0.95,
-        return_full_text: true,
-      },
-    });
-
-    const generatedText = response.data.generatedText;
-    document.getElementById("input-field").value = generatedText;
-  } catch (error) {
-    console.error('Error generating text:', error);
-  }
-}
 
 console = {
   log: function(message) {
@@ -184,8 +157,6 @@ function loadPreviousData()
     css = localStorage.getItem("css");
   if(localStorage.getItem("js") != null)
     js = localStorage.getItem("js");
-  if(localStorage.getItem("generated") != null)
-    document.getElementById("input-field").value = localStorage.getItem("generated");
   loadText();
 }
 
