@@ -133,32 +133,26 @@ function autoSave() {
 setInterval(autoSave, 1 * 60 * 1000);
 
 async function generateText() {
-    let promptText = document.getElementById("input-field").value;
-    const prompt_template = `<|system|>\n<|end|>\n<|user|>\n${promptText}<|end|>\n<|assistant|>`;
+  let promptText = document.getElementById("input-field").value;
 
-    try {
-      const response = await axios.post(apiEndpoint, {
-        inputs: promptText,
-        options: {
-          max_new_token:512,
-          temperature:0.2,
-          do_sample:true,
-          top_k:50,
-          top_p:0.95,
-          return_full_text: true,
-        },
-      }, {
-        headers: {
-          'Authorization': `Bearer ${apiToken}`,
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      const generatedText = response.data[0]?.generated_text;
-      document.getElementById("input-field").value = generatedText;
-    } catch (error) {
-      console.error('Error generating text:', error);
-    }
+  try {
+    const response = await axios.post('/generate-text', {
+      inputs: promptText,
+      options: {
+        max_new_token:512,
+        temperature:0.2,
+        do_sample:true,
+        top_k:50,
+        top_p:0.95,
+        return_full_text: true,
+      },
+    });
+
+    const generatedText = response.data.generatedText;
+    document.getElementById("input-field").value = generatedText;
+  } catch (error) {
+    console.error('Error generating text:', error);
+  }
 }
 
 console = {
@@ -198,5 +192,3 @@ function loadPreviousData()
 setTimeout(loadPreviousData, 100);
 
 const scripts = [];
-const apiToken = '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'; //pls don't abuse this token :)
-const apiEndpoint = "https://api-inference.huggingface.co/models/HuggingFaceH4/starchat-beta";
