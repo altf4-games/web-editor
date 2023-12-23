@@ -92,13 +92,13 @@ const addLibraries = () => {
 
 const downloadFile = () => {
     const link = document.createElement("a");
-    let content = "<!DOCTYPE html><html><head><style>" + cssEditor.getValue() + "</style>";
+    let content = "<!DOCTYPE html><html><head><style>" + css + "</style>";
     
     for (let index = 0; index < scripts.length; index++) {
       content += '<script src="' + scripts[index] + '"></script>';
     }
     
-    content += "<script>" + jsEditor.getValue()  + "</script></head><body>" + htmlEditor.getValue() + "</body></html>"; 
+    content += "<script>" + js + "</script></head><body>" + html + "</body></html>"; 
     const file = new Blob([content], { type: 'text/plain' });
     link.href = URL.createObjectURL(file);
     link.download = "index.html";
