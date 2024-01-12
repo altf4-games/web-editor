@@ -10,7 +10,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/htmlmixed/htmlmixed.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/javascript/javascript.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.0/mode/css/css.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
     <body>
         <div class="navbar">
@@ -22,6 +21,9 @@
 
         <div class="editor">
             <div class="in">
+                <label>CODE PILOT</label>
+                <textarea id="input-field"></textarea>
+                <button class="generate-button" onclick="generateText()">GENERATE CODE</button>
                 <button class="logo-button" onclick="switchTab('html')">HTML</button> <button class="logo-button" onclick="switchTab('css')">CSS</button>
                 <button class="logo-button" onclick="switchTab('javascript')">JAVASCRIPT</button>
                 <div class="button-container">
